@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Agent Insights · TCO 분석 & 서비스 평가 (2026.03)</title>
+<link rel="preconnect" href="https://cdn.jsdelivr.net">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css">
+<style>
+  :root {
+    --bg:#fafafa;--card:#fff;--text:#111;--mid:#444;--dim:#999;--mute:#ccc;
+    --border:#eee;--border2:#e0e0e0;
+    --blue:#0066FF;--amber:#E68A00;--green:#00875A;--red:#CC3333;
+    --blue-bg:#EBF3FF;--amber-bg:#FFF5E0;--green-bg:#E6F6F0;--red-bg:#FFEBEB;
+    --r:12px;
+  }
+  @media(prefers-color-scheme:dark){:root{
+    --bg:#111;--card:#1a1a1a;--text:#eee;--mid:#bbb;--dim:#777;--mute:#444;
+    --border:#222;--border2:#333;
+    --blue:#4D9AFF;--amber:#FFB84D;--green:#36B37E;--red:#FF6B6B;
+    --blue-bg:rgba(77,154,255,0.1);--amber-bg:rgba(255,184,77,0.1);--green-bg:rgba(54,179,126,0.1);--red-bg:rgba(255,107,107,0.1);
+  }}
+  [data-theme="dark"]{--bg:#111;--card:#1a1a1a;--text:#eee;--mid:#bbb;--dim:#777;--mute:#444;--border:#222;--border2:#333;--blue:#4D9AFF;--amber:#FFB84D;--green:#36B37E;--red:#FF6B6B;--blue-bg:rgba(77,154,255,0.1);--amber-bg:rgba(255,184,77,0.1);--green-bg:rgba(54,179,126,0.1);--red-bg:rgba(255,107,107,0.1)}
+  [data-theme="light"]{--bg:#fafafa;--card:#fff;--text:#111;--mid:#444;--dim:#999;--mute:#ccc;--border:#eee;--border2:#e0e0e0;--blue:#0066FF;--amber:#E68A00;--green:#00875A;--red:#CC3333;--blue-bg:#EBF3FF;--amber-bg:#FFF5E0;--green-bg:#E6F6F0;--red-bg:#FFEBEB}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Pretendard',-apple-system,sans-serif;background:var(--bg);color:var(--text);padding:56px 24px 40px;-webkit-font-smoothing:antialiased;line-height:1.6}
+  .c{max-width:920px;margin:0 auto}
+  .avg{width:28px;height:28px;border-radius:7px;display:inline-flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;color:#fff;flex-shrink:0;letter-spacing:-0.5px}
+  .avg-sm{width:20px;height:20px;border-radius:5px;font-size:9px}
+
+  .hdr{margin-bottom:48px}
+  .hdr-label{font-size:11px;font-weight:700;color:var(--dim);text-transform:uppercase;letter-spacing:3px;margin-bottom:8px}
+  .hdr-title{font-size:40px;font-weight:800;letter-spacing:-1.5px;line-height:1.1}
+  .hdr-sub{font-size:15px;color:var(--dim);margin-top:10px;max-width:600px}
+  .hdr-meta{margin-top:14px;font-size:12px;color:var(--mute)}
+
+  .sec{margin-bottom:56px}
+  .sec-label{font-size:11px;font-weight:700;color:var(--dim);text-transform:uppercase;letter-spacing:3px;margin-bottom:6px}
+  .sec-title{font-size:22px;font-weight:800;letter-spacing:-0.5px;margin-bottom:8px}
+  .sec-desc{font-size:13px;color:var(--dim);margin-bottom:20px}
+
+  /* TCO Simulator */
+  .sim-controls{display:flex;gap:16px;align-items:flex-end;margin-bottom:24px;flex-wrap:wrap}
+  .sim-group{display:flex;flex-direction:column;gap:4px}
+  .sim-label{font-size:11px;font-weight:700;color:var(--dim);text-transform:uppercase;letter-spacing:1px}
+  .sim-slider{-webkit-appearance:none;width:200px;height:4px;background:var(--border2);border-radius:2px;outline:none}
+  .sim-slider::-webkit-slider-thumb{-webkit-appearance:none;width:18px;height:18px;border-radius:50%;background:var(--text);cursor:pointer}
+  .sim-val{font-size:20px;font-weight:800;letter-spacing:-0.5px;min-width:60px}
+  .sim-pills{display:flex;gap:4px}
+  .sim-pill{padding:4px 12px;border-radius:6px;font-size:11px;font-weight:700;border:1px solid var(--border2);background:var(--card);color:var(--dim);cursor:pointer;font-family:inherit}
+  .sim-pill.active{background:var(--text);color:var(--bg);border-color:var(--text)}
+
+  /* TCO Results */
+  .tco-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border2);border-radius:var(--r);overflow:hidden}
+  .tco-card{background:var(--card);padding:24px 18px;position:relative}
+  .tco-card.winner::after{content:'BEST VALUE';position:absolute;top:8px;right:8px;font-size:8px;font-weight:800;letter-spacing:1px;padding:2px 6px;border-radius:4px}
+  .tco-head{display:flex;align-items:center;gap:8px;margin-bottom:14px}
+  .tco-name{font-size:13px;font-weight:800}
+  .tco-monthly{font-size:11px;color:var(--dim);margin-bottom:4px}
+  .tco-annual{font-size:28px;font-weight:800;letter-spacing:-1px}
+  .tco-annual span{font-size:12px;font-weight:500;color:var(--dim)}
+  .tco-bar-wrap{margin-top:14px;height:8px;background:var(--border);border-radius:4px;overflow:hidden}
+  .tco-bar{height:100%;border-radius:4px;transition:width 0.5s ease}
+  .tco-breakdown{margin-top:10px;font-size:10px;color:var(--dim);line-height:1.5}
+  .tco-warn{margin-top:8px;padding:6px 10px;border-radius:6px;font-size:10px;font-weight:600;line-height:1.4}
+
+  /* Radar / Score */
+  .radar-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border2);border-radius:var(--r);overflow:hidden}
+  .radar-card{background:var(--card);padding:24px 18px}
+  .radar-head{display:flex;align-items:center;gap:8px;margin-bottom:16px}
+  .radar-name{font-size:14px;font-weight:800}
+  .radar-scores{display:flex;flex-direction:column;gap:8px}
+  .radar-row{display:flex;align-items:center;gap:8px}
+  .radar-label{font-size:11px;color:var(--dim);width:70px;flex-shrink:0}
+  .radar-bar-wrap{flex:1;height:6px;background:var(--border);border-radius:3px;overflow:hidden}
+  .radar-bar{height:100%;border-radius:3px;transition:width 0.5s ease}
+  .radar-val{font-size:11px;font-weight:800;width:24px;text-align:right}
+  .radar-summary{margin-top:14px;padding-top:12px;border-top:1px solid var(--border);font-size:11px;color:var(--mid);line-height:1.5}
+
+  /* Hidden costs */
+  .risk-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:20px}
+  .risk-card{border:1px solid var(--border2);border-radius:var(--r);padding:18px;background:var(--card)}
+  .risk-head{display:flex;align-items:center;gap:8px;margin-bottom:10px}
+  .risk-title{font-size:13px;font-weight:800}
+  .risk-items{display:flex;flex-direction:column;gap:6px}
+  .risk-item{font-size:11px;color:var(--mid);line-height:1.5;padding-left:12px;position:relative}
+  .risk-item::before{content:'';position:absolute;left:0;top:6px;width:5px;height:5px;border-radius:50%;background:var(--red)}
+  .risk-item.ok::before{background:var(--green)}
+
+  .nav{display:flex;gap:8px;margin-top:56px;padding-top:24px;border-top:1px solid var(--border2);justify-content:space-between;align-items:center}
+  .nav-link{padding:10px 20px;border-radius:8px;font-size:13px;font-weight:700;text-decoration:none;transition:opacity 0.2s;border:1px solid var(--border2);color:var(--text);background:var(--card)}
+  .nav-link:hover{opacity:0.7}
+  .nav-link.primary{background:var(--text);color:var(--bg);border-color:var(--text)}
+  .nav-meta{font-size:11px;color:var(--dim)}
+
+  .theme-btn{position:fixed;top:16px;right:16px;z-index:100;background:var(--card);border:1px solid var(--border2);border-radius:8px;padding:6px 10px;cursor:pointer;font-family:inherit;font-weight:600;font-size:12px;color:var(--text)}
+  .theme-btn:hover{border-color:var(--dim)}
+
+  @media(max-width:768px){
+    .tco-grid,.radar-grid{grid-template-columns:repeat(2,1fr)}
+    .risk-grid{grid-template-columns:1fr}
+    .sim-slider{width:140px}
+    body{padding:32px 16px}
+    .hdr-title{font-size:30px}
+  }
+  @media(max-width:480px){.tco-grid,.radar-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="c">
+  <button class="theme-btn" onclick="toggleTheme()">Light / Dark</button>
+
+  <div class="hdr">
+    <div class="hdr-label">Insights</div>
+    <div class="hdr-title">TCO 분석 &<br>서비스 평가</div>
+    <div class="hdr-sub">사용량에 따른 연간 비용과 서비스별 강점/약점/숨겨진 비용을 분석합니다.</div>
+    <div class="hdr-meta">2026년 3월 27일 기준 · 실측 데이터 기반</div>
+  </div>
+
+  <!-- TCO Simulator -->
+  <div class="sec">
+    <div class="sec-label">TCO Simulator</div>
+    <div class="sec-title">사용량별 연간 비용</div>
+    <div class="sec-desc">슬라이더로 월간 작업량을 조정하면 서비스별 연간 총비용이 계산됩니다.</div>
+
+    <div class="sim-controls">
+      <div class="sim-group">
+        <div class="sim-label">월간 에이전트 작업 수</div>
+        <div style="display:flex;align-items:center;gap:12px">
+          <input type="range" class="sim-slider" id="taskSlider" min="5" max="200" value="50" oninput="updateTCO()">
+          <span class="sim-val" id="taskVal">50</span><span style="font-size:12px;color:var(--dim)">건/월</span>
+        </div>
+      </div>
+      <div class="sim-group">
+        <div class="sim-label">작업 복잡도</div>
+        <div class="sim-pills" id="complexPills">
+          <button class="sim-pill" onclick="setComplex('simple')">단순</button>
+          <button class="sim-pill active" onclick="setComplex('medium')">보통</button>
+          <button class="sim-pill" onclick="setComplex('heavy')">복잡</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="tco-grid" id="tcoGrid"></div>
+  </div>
+
+  <!-- Radar Scores -->
+  <div class="sec">
+    <div class="sec-label">Service Evaluation</div>
+    <div class="sec-title">서비스 강점/약점 평가</div>
+    <div class="sec-desc">6개 축으로 평가. 10점 만점, 실측 데이터와 전문가 리뷰 기반.</div>
+    <div class="radar-grid" id="radarGrid"></div>
+  </div>
+
+  <!-- Hidden Costs & Risks -->
+  <div class="sec">
+    <div class="sec-label">Hidden Costs & Risks</div>
+    <div class="sec-title">숨겨진 비용과 리스크</div>
+    <div class="sec-desc">공식 가격표에 드러나지 않는 실질 비용 요소.</div>
+    <div class="risk-grid" id="riskGrid"></div>
+  </div>
+
+  <div class="nav">
+    <div style="display:flex;gap:8px">
+      <a href="summary.html" class="nav-link">Executive Summary</a>
+      <a href="index.html" class="nav-link">상세 비교표</a>
+    </div>
+    <div class="nav-meta">가격 정보는 2026년 3월 27일 기준 · 세금 미포함</div>
+  </div>
+</div>
+
+<script>
+const SVC = [
+  { id:'px', name:'Perplexity', color:'var(--blue)', bg:'var(--blue-bg)',
+    base: 200, // monthly subscription
+    // cost per task by complexity: [simple, medium, heavy] in dollars
+    perTask: { simple: 0.15, medium: 1.50, heavy: 15.00 },
+    overageFactor: 1, // additional cost multiplier when over credit limit
+    scores: { cost:4, quality:9, autonomy:10, breadth:9, privacy:5, enterprise:7 },
+    summary: '리서치 정확도 최고. 19개 모델 자동 선택. 단, 크레딧 소진 빠르고 헤비유저 비용 폭증.',
+    risks: [
+      '1작업에 1K~21K 크레딧 — 복잡 작업 시 월 할당 1~2건만에 소진',
+      '추가 크레딧 캡 $200~$2,000 — 예산 초과 위험',
+      '클라우드 샌드박스 전용 — 로컬 파일 접근 불가, 민감 데이터 제한'
+    ],
+    oks: ['신규 가입 시 35,000 크레딧 보너스 (첫 달 넉넉)', '작업별 크레딧 소모 투명하게 표시'] },
+  { id:'cl', name:'Claude', color:'var(--amber)', bg:'var(--amber-bg)',
+    base: 20,
+    perTask: { simple: 0, medium: 0, heavy: 0 }, // flat subscription
+    overageFactor: 0,
+    maxBase: { simple:20, medium:100, heavy:200 }, // recommended plan by complexity
+    scores: { cost:9, quality:8, autonomy:7, breadth:7, privacy:7, enterprise:9 },
+    summary: '가성비 최고. 정액제로 비용 예측 가능. Cowork+Code+데스크톱 통합. 윈도우 내 토큰 소진 시 대기.',
+    risks: [
+      'Pro ~44K 토큰/5hr — 복잡 작업 1건에 윈도우 전체 소진 가능',
+      '99.4%가 컨텍스트 재읽기 토큰 — /clear 미사용 시 낭비 심각',
+      'Max 20x($200)도 Opus 4.6 연속 사용 시 부족할 수 있음'
+    ],
+    oks: ['시간 리셋으로 하루 종일 사용 가능', 'Opus가 Sonnet 대비 48~76% 토큰 절약'] },
+  { id:'oa', name:'OpenAI', color:'var(--green)', bg:'var(--green-bg)',
+    base: 20,
+    perTask: { simple: 0, medium: 0, heavy: 0 },
+    overageFactor: 0,
+    maxBase: { simple:20, medium:20, heavy:200 },
+    scores: { cost:8, quality:7, autonomy:6, breadth:10, privacy:5, enterprise:7 },
+    summary: '생태계 최대. Codex+Sora 통합. Web+CLI+App 3채널. 메시지 소진이 빠를 수 있음.',
+    risks: [
+      '에이전트 1작업 = 5~50 메시지 — 하루 ~25건이 실질 한계',
+      'Plus 소진 시 mini 모델로 자동 전환 — 품질 급락',
+      'Free/Go 플랜에 광고 포함 (미국)'
+    ],
+    oks: ['Pro $200이면 무제한 사용', '이미지/비디오 생성 포함 (Sora)'] },
+  { id:'oc', name:'OpenClaw', color:'var(--red)', bg:'var(--red-bg)',
+    base: 0,
+    perTask: { simple: 0.05, medium: 0.30, heavy: 2.00 },
+    overageFactor: 1,
+    scores: { cost:7, quality:6, autonomy:5, breadth:6, privacy:10, enterprise:3 },
+    summary: '완전한 데이터 통제. 제로 텔레메트리. 모델 자유 선택. 기업 기능 부재, 운영 인력 필요.',
+    risks: [
+      '대량 사용 시 API 비용 $100~$300+/월 — "무료"가 아닐 수 있음',
+      '비용 예측 어려움 — 모델/작업에 따라 10~100배 차이',
+      'SSO/감사 로그 등 기업 기능 직접 구축 필요',
+      '보안 책임 전적으로 자체 — 사고 시 벤더 지원 없음'
+    ],
+    oks: ['소량 사용 시 $0.45~$6/월 가능', '모델 라우팅으로 60~80% 비용 절감 가능'] }
+];
+
+const DIMS = [
+  { key:'cost', label:'비용 효율' },
+  { key:'quality', label:'작업 품질' },
+  { key:'autonomy', label:'자율성' },
+  { key:'breadth', label:'기능 범위' },
+  { key:'privacy', label:'프라이버시' },
+  { key:'enterprise', label:'기업 기능' },
+];
+
+let complexity = 'medium';
+
+function setComplex(v) {
+  complexity = v;
+  document.querySelectorAll('.sim-pill').forEach(p => p.classList.remove('active'));
+  event.target.classList.add('active');
+  updateTCO();
+}
+
+function updateTCO() {
+  const tasks = parseInt(document.getElementById('taskSlider').value);
+  document.getElementById('taskVal').textContent = tasks;
+
+  const results = SVC.map(s => {
+    let monthly, annual, breakdown;
+    if (s.perTask[complexity] === 0) {
+      // flat subscription - pick appropriate tier
+      const base = s.maxBase ? s.maxBase[complexity] : s.base;
+      monthly = base;
+      annual = base * 12;
+      breakdown = `$${base}/월 정액`;
+    } else {
+      const taskCost = s.perTask[complexity] * tasks;
+      monthly = s.base + taskCost;
+      annual = monthly * 12;
+      breakdown = s.base > 0
+        ? `구독 $${s.base} + 작업 $${taskCost.toFixed(0)}/월`
+        : `API $${taskCost.toFixed(0)}/월`;
+    }
+    return { ...s, monthly, annual, breakdown };
+  });
+
+  const maxAnnual = Math.max(...results.map(r => r.annual));
+  const minAnnual = Math.min(...results.map(r => r.annual));
+
+  let html = '';
+  results.forEach(r => {
+    const isWinner = r.annual === minAnnual;
+    const pct = maxAnnual > 0 ? (r.annual / maxAnnual * 100) : 0;
+    let warn = '';
+    if (r.id === 'px' && tasks > 30 && complexity !== 'simple') {
+      warn = `<div class="tco-warn" style="background:var(--red-bg);color:var(--red)">월 크레딧 초과 가능 — 추가 과금 발생</div>`;
+    }
+    if (r.id === 'cl' && complexity === 'heavy') {
+      warn = `<div class="tco-warn" style="background:var(--amber-bg);color:var(--amber)">Max 20x 추천 — Pro는 윈도우 부족</div>`;
+    }
+    if (r.id === 'oa' && tasks > 25 && complexity !== 'simple') {
+      warn = `<div class="tco-warn" style="background:var(--green-bg);color:var(--green)">일 25건 초과 — Pro($200) 고려</div>`;
+    }
+    html += `
+      <div class="tco-card${isWinner ? ' winner' : ''}" ${isWinner ? `style="outline:2px solid ${r.color.replace('var(','').replace(')','')}"` : ''}>
+        ${isWinner ? `<style>.tco-card.winner::after{background:${r.bg};color:${r.color}}</style>` : ''}
+        <div class="tco-head"><div class="avg" style="background:${r.color}">${r.id.toUpperCase().slice(0,2)}</div><div class="tco-name">${r.name}</div></div>
+        <div class="tco-monthly">${r.breakdown}</div>
+        <div class="tco-annual" style="color:${r.color}">$${r.annual.toLocaleString()}<span>/년</span></div>
+        <div class="tco-bar-wrap"><div class="tco-bar" style="width:${pct}%;background:${r.color}"></div></div>
+        <div class="tco-breakdown">월 $${r.monthly.toLocaleString()}</div>
+        ${warn}
+      </div>`;
+  });
+  document.getElementById('tcoGrid').innerHTML = html;
+}
+
+function renderRadar() {
+  let html = '';
+  SVC.forEach(s => {
+    const avg = (Object.values(s.scores).reduce((a,b) => a+b, 0) / DIMS.length).toFixed(1);
+    html += `
+      <div class="radar-card">
+        <div class="radar-head"><div class="avg" style="background:${s.color}">${s.id.toUpperCase().slice(0,2)}</div><div class="radar-name">${s.name}</div></div>
+        <div class="radar-scores">
+          ${DIMS.map(d => `
+            <div class="radar-row">
+              <span class="radar-label">${d.label}</span>
+              <div class="radar-bar-wrap"><div class="radar-bar" style="width:${s.scores[d.key]*10}%;background:${s.color}"></div></div>
+              <span class="radar-val">${s.scores[d.key]}</span>
+            </div>
+          `).join('')}
+        </div>
+        <div style="margin-top:10px;text-align:right;font-size:18px;font-weight:800;color:${s.color}">${avg}<span style="font-size:11px;color:var(--dim)">/10</span></div>
+        <div class="radar-summary">${s.summary}</div>
+      </div>`;
+  });
+  document.getElementById('radarGrid').innerHTML = html;
+}
+
+function renderRisks() {
+  let html = '';
+  SVC.forEach(s => {
+    html += `
+      <div class="risk-card">
+        <div class="risk-head"><div class="avg avg-sm" style="background:${s.color}">${s.id.toUpperCase().slice(0,2)}</div><div class="risk-title">${s.name}</div></div>
+        <div class="risk-items">
+          ${s.risks.map(r => `<div class="risk-item">${r}</div>`).join('')}
+          ${s.oks.map(r => `<div class="risk-item ok">${r}</div>`).join('')}
+        </div>
+      </div>`;
+  });
+  document.getElementById('riskGrid').innerHTML = html;
+}
+
+function toggleTheme(){
+  const h=document.documentElement,c=h.getAttribute('data-theme');
+  const d=c==='dark'||(!c&&matchMedia('(prefers-color-scheme:dark)').matches);
+  h.setAttribute('data-theme',d?'light':'dark');localStorage.setItem('theme',d?'light':'dark');
+}
+const sv=localStorage.getItem('theme');
+if(sv) document.documentElement.setAttribute('data-theme',sv);
+
+updateTCO();
+renderRadar();
+renderRisks();
+</script>
+</body>
+</html>

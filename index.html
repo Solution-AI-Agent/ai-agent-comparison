@@ -778,7 +778,10 @@ function render() {
   // ── Footer ──
   html += `
   <div class="footer">
-    <a href="summary.html" style="display:inline-block;margin-bottom:12px;padding:8px 20px;border-radius:10px;background:var(--accent);color:#fff;font-size:12px;font-weight:700;text-decoration:none">📊 Executive Summary 보기</a><br>
+    <span style="display:inline-flex;gap:8px;margin-bottom:12px">
+      <a href="summary.html" style="padding:8px 20px;border-radius:10px;background:var(--accent);color:#fff;font-size:12px;font-weight:700;text-decoration:none">Executive Summary</a>
+      <a href="insights.html" style="padding:8px 20px;border-radius:10px;background:var(--card);color:var(--text);font-size:12px;font-weight:700;text-decoration:none;border:1px solid var(--border)">TCO 분석 & 인사이트</a>
+    </span><br>
     가격 정보는 2026년 3월 27일 기준 · 세금 미포함 · 엔터프라이즈 요금은 별도 문의
   </div>`;
 
