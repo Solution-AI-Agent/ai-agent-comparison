@@ -286,8 +286,8 @@ const SVC = [
     // cost per task by complexity: [simple, medium, heavy] in dollars
     perTask: { simple: 0.15, medium: 1.50, heavy: 15.00 },
     overageFactor: 1, // additional cost multiplier when over credit limit
-    scores: { cost:4, quality:9, autonomy:10, breadth:9, privacy:5, enterprise:7 },
-    summary: '리서치 정확도 최고. 19개 모델 자동 선택. 단, 크레딧 소진 빠르고 헤비유저 비용 폭증.',
+    scores: { cost:3, quality:9, autonomy:10, breadth:8, privacy:5, enterprise:6 },
+    summary: '리서치 정확도 최고. 19개 모델 자동 선택. 단, 크레딧 소진 빠르고 헤비유저 $500~$1,500+/월. 클라우드 전용으로 데스크톱/로컬 접근 불가.',
     risks: [
       '1작업에 1K~21K 크레딧 — 복잡 작업 시 월 할당 1~2건만에 소진',
       '추가 크레딧 캡 $200~$2,000 — 예산 초과 위험',
@@ -299,8 +299,8 @@ const SVC = [
     perTask: { simple: 0, medium: 0, heavy: 0 }, // flat subscription
     overageFactor: 0,
     maxBase: { simple:20, medium:100, heavy:200 }, // recommended plan by complexity
-    scores: { cost:9, quality:8, autonomy:7, breadth:7, privacy:7, enterprise:9 },
-    summary: '가성비 최고. 정액제로 비용 예측 가능. Cowork+Code+데스크톱 통합. 윈도우 내 토큰 소진 시 대기.',
+    scores: { cost:9, quality:9, autonomy:7, breadth:8, privacy:8, enterprise:9 },
+    summary: 'SWE-bench 72.7% (업계 최고). $20 정액제로 Code+Cowork+데스크톱+모바일 통합. 로컬 우선 실행으로 프라이버시 우수. 윈도우 리셋으로 지속 사용 가능.',
     risks: [
       'Pro ~44K 토큰/5hr — 복잡 작업 1건에 윈도우 전체 소진 가능',
       '99.4%가 컨텍스트 재읽기 토큰 — /clear 미사용 시 낭비 심각',
@@ -321,8 +321,8 @@ const SVC = [
       agent: 30, deepResearch: 50, imageGen: 6, voice: 5,
       gpt53: 0, gpt54thinking: 10, gpt54pro: 50
     },
-    scores: { cost:8, quality:7, autonomy:6, breadth:10, privacy:5, enterprise:7 },
-    summary: '생태계 최대. Codex+Sora 통합. Enterprise: GPT 5.3 무제한 + 크레딧 풀. Codex Cloud ~25cr/작업.',
+    scores: { cost:7, quality:7, autonomy:6, breadth:10, privacy:5, enterprise:9 },
+    summary: '생태계 최대. Codex+Sora+ImageGen+Voice 통합. Enterprise: GPT 5.3 무제한 + 크레딧 풀, SOC2/SCIM/EKM/HIPAA. 단, 150석 최소 연 $108K+.',
     risks: [
       'Enterprise ~$60/석 + 크레딧 풀 — 150석 최소 (연 $108K+)',
       'Codex Cloud 작업 25~34cr — 크레딧 풀 소진 속도 주의',
@@ -334,8 +334,8 @@ const SVC = [
     base: 0,
     perTask: { simple: 0.05, medium: 0.30, heavy: 2.00 },
     overageFactor: 1,
-    scores: { cost:7, quality:6, autonomy:5, breadth:6, privacy:10, enterprise:3 },
-    summary: '완전한 데이터 통제. 제로 텔레메트리. 모델 자유 선택. 기업 기능 부재, 운영 인력 필요.',
+    scores: { cost:6, quality:6, autonomy:5, breadth:7, privacy:10, enterprise:3 },
+    summary: '완전한 데이터 통제. 제로 텔레메트리. 13,700+ Skills 생태계. 기업 기능 부재, 운영 인력 필요. 대량 사용 시 API 비용 $300+.',
     risks: [
       '대량 사용 시 API 비용 $100~$300+/월 — "무료"가 아닐 수 있음',
       '비용 예측 어려움 — 모델/작업에 따라 10~100배 차이',
