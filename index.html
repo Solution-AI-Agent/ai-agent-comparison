@@ -553,6 +553,44 @@ function render() {
     </div>
   </div>`;
 
+  // ── Service Cards (Plans & Pros/Cons) ──
+  const cardsKey = 'cards' + tab.charAt(0).toUpperCase() + tab.slice(1);
+  const cardsLabel = SECTION_LABELS[cardsKey];
+  const colorToLightBg = { '#0ea5e9': 'var(--accent-light)', '#f59e0b': 'var(--amber-light)', '#10b981': 'var(--green-light)', '#ef4444': 'var(--red-light)' };
+  html += `
+  <div class="section">
+    <span class="section-label">${cardsLabel.label}</span>
+    <h2 class="section-title">${cardsLabel.title}</h2>
+    <div class="billing-grid">
+      ${DATA.services.map(s => {
+        const lightBg = colorToLightBg[s.color] || 'var(--accent-light)';
+        const plans = s.plans.filter(p => p.cat === tab || p.cat === 'both');
+        const pros = tab === 'personal' ? s.pros : s.prosEnt;
+        const cons = tab === 'personal' ? s.cons : s.consEnt;
+        return `<div class="billing-card">
+          <div class="billing-accent" style="background:${s.color}"></div>
+          <div class="billing-icon" style="background:${lightBg}">${s.icon}</div>
+          <div class="billing-name">${s.name}</div>
+          <div class="billing-sub">${s.sub}</div>
+          <div class="billing-model" style="background:${lightBg};color:${s.color}">
+            <span class="billing-model-dot" style="background:${s.color}"></span>${s.billingModel}
+          </div>
+          <div class="billing-tiers">
+            ${plans.map(p => `<div class="billing-tier${p.rec === tab ? ' rec' : ''}">
+              <span class="tier-name">${p.tier}${p.rec === tab ? '<span class="tier-rec">추천</span>' : ''}</span>
+              <span class="tier-price">${p.price}</span>
+            </div>`).join('')}
+          </div>
+          <div class="billing-divider"></div>
+          <div class="pc-label" style="color:var(--green)">장점</div>
+          <ul class="pc-list pros">${pros.map(t => `<li>${t}</li>`).join('')}</ul>
+          <div class="pc-label" style="color:var(--red)">단점</div>
+          <ul class="pc-list cons">${cons.map(t => `<li>${t}</li>`).join('')}</ul>
+        </div>`;
+      }).join('')}
+    </div>
+  </div>`;
+
   app.innerHTML = html;
 }
 
