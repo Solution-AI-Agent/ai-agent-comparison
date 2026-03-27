@@ -327,6 +327,8 @@
   /* ── Responsive ── */
   @media (max-width: 960px) {
     .billing-grid { grid-template-columns: repeat(2, 1fr); }
+    .agent-row { flex-direction: column; }
+    .overlap-grid { grid-template-columns: 1fr; }
     th:first-child, td:first-child {
       position: sticky; left: 0; z-index: 1; background: var(--card);
     }
@@ -335,7 +337,32 @@
   }
   @media (max-width: 600px) {
     .billing-grid, .insight-grid { grid-template-columns: 1fr; }
-    body { padding: 24px 16px; }
+    body { padding: 24px 12px; font-size: 15px; }
+    .header-title { font-size: 28px; }
+    .section-title { font-size: 20px; }
+    .section-label { font-size: 12px; }
+    .billing-card { padding: 20px 16px; }
+    .billing-name { font-size: 17px; }
+    .billing-sub { font-size: 12px; }
+    .billing-model { font-size: 12px; }
+    .billing-tier { font-size: 13px; padding: 10px 12px; }
+    .pc-list li { font-size: 13px; line-height: 1.7; }
+    .pc-label { font-size: 11px; }
+    .insight-card { padding: 18px; flex-direction: column; }
+    .insight-title { font-size: 15px; }
+    .insight-text { font-size: 13px; }
+    .main-tab { font-size: 14px; padding: 10px 20px; }
+    .pill { font-size: 13px; padding: 8px 14px; }
+    th, td { padding: 8px 6px; font-size: 12px; }
+    .cat-header-title { font-size: 17px; }
+    .cat-header-desc { font-size: 13px; }
+    .agent-card { padding: 16px; }
+    .agent-name-label { font-size: 15px; }
+    .agent-desc { font-size: 12px; }
+    .arch-matrix th, .arch-matrix td { font-size: 11px; padding: 8px; }
+    .overlap-title { font-size: 15px; }
+    .overlap-item { font-size: 12px; }
+    .footer { font-size: 13px; }
   }
 </style>
 </head>

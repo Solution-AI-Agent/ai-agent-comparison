@@ -23,87 +23,90 @@
   [data-theme="dark"]{--bg:#111;--card:#1a1a1a;--text:#eee;--mid:#bbb;--dim:#777;--mute:#444;--border:#222;--border2:#333;--blue:#4D9AFF;--amber:#FFB84D;--green:#36B37E;--red:#FF6B6B;--blue-bg:rgba(77,154,255,0.1);--amber-bg:rgba(255,184,77,0.1);--green-bg:rgba(54,179,126,0.1);--red-bg:rgba(255,107,107,0.1)}
   [data-theme="light"]{--bg:#fafafa;--card:#fff;--text:#111;--mid:#444;--dim:#999;--mute:#ccc;--border:#eee;--border2:#e0e0e0;--blue:#0066FF;--amber:#E68A00;--green:#00875A;--red:#CC3333;--blue-bg:#EBF3FF;--amber-bg:#FFF5E0;--green-bg:#E6F6F0;--red-bg:#FFEBEB}
   *{box-sizing:border-box;margin:0;padding:0}
-  body{font-family:'Pretendard',-apple-system,sans-serif;background:var(--bg);color:var(--text);padding:56px 24px 40px;-webkit-font-smoothing:antialiased;line-height:1.6}
+  body{font-family:'Pretendard',-apple-system,sans-serif;background:var(--bg);color:var(--text);padding:56px 24px 40px;-webkit-font-smoothing:antialiased;line-height:1.7;font-size:14px}
   .c{max-width:920px;margin:0 auto}
-  .avg{width:28px;height:28px;border-radius:7px;display:inline-flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;color:#fff;flex-shrink:0;letter-spacing:-0.5px}
-  .avg-sm{width:20px;height:20px;border-radius:5px;font-size:9px}
+  .avg{width:32px;height:32px;border-radius:8px;display:inline-flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;color:#fff;flex-shrink:0;letter-spacing:-0.5px}
+  .avg-sm{width:24px;height:24px;border-radius:6px;font-size:10px}
 
   .hdr{margin-bottom:48px}
-  .hdr-label{font-size:11px;font-weight:700;color:var(--dim);text-transform:uppercase;letter-spacing:3px;margin-bottom:8px}
+  .hdr-label{font-size:12px;font-weight:700;color:var(--dim);text-transform:uppercase;letter-spacing:3px;margin-bottom:8px}
   .hdr-title{font-size:40px;font-weight:800;letter-spacing:-1.5px;line-height:1.1}
-  .hdr-sub{font-size:15px;color:var(--dim);margin-top:10px;max-width:600px}
-  .hdr-meta{margin-top:14px;font-size:12px;color:var(--mute)}
+  .hdr-sub{font-size:16px;color:var(--dim);margin-top:12px;max-width:600px;line-height:1.7}
+  .hdr-meta{margin-top:14px;font-size:13px;color:var(--mute)}
 
   .sec{margin-bottom:56px}
-  .sec-label{font-size:11px;font-weight:700;color:var(--dim);text-transform:uppercase;letter-spacing:3px;margin-bottom:6px}
-  .sec-title{font-size:22px;font-weight:800;letter-spacing:-0.5px;margin-bottom:8px}
-  .sec-desc{font-size:13px;color:var(--dim);margin-bottom:20px}
+  .sec-label{font-size:12px;font-weight:700;color:var(--dim);text-transform:uppercase;letter-spacing:3px;margin-bottom:6px}
+  .sec-title{font-size:24px;font-weight:800;letter-spacing:-0.5px;margin-bottom:8px}
+  .sec-desc{font-size:14px;color:var(--dim);margin-bottom:20px;line-height:1.7}
 
   /* TCO Simulator */
   .sim-controls{display:flex;gap:16px;align-items:flex-end;margin-bottom:24px;flex-wrap:wrap}
   .sim-group{display:flex;flex-direction:column;gap:4px}
-  .sim-label{font-size:11px;font-weight:700;color:var(--dim);text-transform:uppercase;letter-spacing:1px}
-  .sim-slider{-webkit-appearance:none;width:200px;height:4px;background:var(--border2);border-radius:2px;outline:none}
-  .sim-slider::-webkit-slider-thumb{-webkit-appearance:none;width:18px;height:18px;border-radius:50%;background:var(--text);cursor:pointer}
-  .sim-val{font-size:20px;font-weight:800;letter-spacing:-0.5px;min-width:60px}
-  .sim-pills{display:flex;gap:4px}
-  .sim-pill{padding:4px 12px;border-radius:6px;font-size:11px;font-weight:700;border:1px solid var(--border2);background:var(--card);color:var(--dim);cursor:pointer;font-family:inherit}
+  .sim-label{font-size:12px;font-weight:700;color:var(--dim);text-transform:uppercase;letter-spacing:1px}
+  .sim-slider{-webkit-appearance:none;width:220px;height:6px;background:var(--border2);border-radius:3px;outline:none}
+  .sim-slider::-webkit-slider-thumb{-webkit-appearance:none;width:24px;height:24px;border-radius:50%;background:var(--text);cursor:pointer}
+  .sim-val{font-size:24px;font-weight:800;letter-spacing:-0.5px;min-width:60px}
+  .sim-pills{display:flex;gap:6px}
+  .sim-pill{padding:8px 16px;border-radius:8px;font-size:13px;font-weight:700;border:1px solid var(--border2);background:var(--card);color:var(--dim);cursor:pointer;font-family:inherit}
   .sim-pill.active{background:var(--text);color:var(--bg);border-color:var(--text)}
 
   /* TCO Results */
   .tco-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border2);border-radius:var(--r);overflow:hidden}
   .tco-card{background:var(--card);padding:24px 18px;position:relative}
-  .tco-card.winner::after{content:'BEST VALUE';position:absolute;top:8px;right:8px;font-size:8px;font-weight:800;letter-spacing:1px;padding:2px 6px;border-radius:4px}
+  /* winner badge removed per request */
   .tco-head{display:flex;align-items:center;gap:8px;margin-bottom:14px}
-  .tco-name{font-size:13px;font-weight:800}
-  .tco-monthly{font-size:11px;color:var(--dim);margin-bottom:4px}
-  .tco-annual{font-size:28px;font-weight:800;letter-spacing:-1px}
-  .tco-annual span{font-size:12px;font-weight:500;color:var(--dim)}
+  .tco-name{font-size:15px;font-weight:800}
+  .tco-monthly{font-size:13px;color:var(--dim);margin-bottom:4px}
+  .tco-annual{font-size:30px;font-weight:800;letter-spacing:-1px}
+  .tco-annual span{font-size:13px;font-weight:500;color:var(--dim)}
   .tco-bar-wrap{margin-top:14px;height:8px;background:var(--border);border-radius:4px;overflow:hidden}
   .tco-bar{height:100%;border-radius:4px;transition:width 0.5s ease}
-  .tco-breakdown{margin-top:10px;font-size:10px;color:var(--dim);line-height:1.5}
-  .tco-warn{margin-top:8px;padding:6px 10px;border-radius:6px;font-size:10px;font-weight:600;line-height:1.4}
+  .tco-breakdown{margin-top:10px;font-size:12px;color:var(--dim);line-height:1.5}
+  .tco-warn{margin-top:10px;padding:8px 12px;border-radius:8px;font-size:12px;font-weight:600;line-height:1.5}
 
   /* Radar / Score */
   .radar-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border2);border-radius:var(--r);overflow:hidden}
   .radar-card{background:var(--card);padding:24px 18px}
   .radar-head{display:flex;align-items:center;gap:8px;margin-bottom:16px}
-  .radar-name{font-size:14px;font-weight:800}
-  .radar-scores{display:flex;flex-direction:column;gap:8px}
-  .radar-row{display:flex;align-items:center;gap:8px}
-  .radar-label{font-size:11px;color:var(--dim);width:70px;flex-shrink:0}
-  .radar-bar-wrap{flex:1;height:6px;background:var(--border);border-radius:3px;overflow:hidden}
-  .radar-bar{height:100%;border-radius:3px;transition:width 0.5s ease}
-  .radar-val{font-size:11px;font-weight:800;width:24px;text-align:right}
-  .radar-summary{margin-top:14px;padding-top:12px;border-top:1px solid var(--border);font-size:11px;color:var(--mid);line-height:1.5}
+  .radar-name{font-size:16px;font-weight:800}
+  .radar-scores{display:flex;flex-direction:column;gap:10px}
+  .radar-row{display:flex;align-items:center;gap:10px}
+  .radar-label{font-size:13px;color:var(--dim);width:80px;flex-shrink:0}
+  .radar-bar-wrap{flex:1;height:8px;background:var(--border);border-radius:4px;overflow:hidden}
+  .radar-bar{height:100%;border-radius:4px;transition:width 0.5s ease}
+  .radar-val{font-size:13px;font-weight:800;width:28px;text-align:right}
+  .radar-summary{margin-top:16px;padding-top:14px;border-top:1px solid var(--border);font-size:13px;color:var(--mid);line-height:1.7}
 
   /* Hidden costs */
   .risk-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:20px}
-  .risk-card{border:1px solid var(--border2);border-radius:var(--r);padding:18px;background:var(--card)}
-  .risk-head{display:flex;align-items:center;gap:8px;margin-bottom:10px}
-  .risk-title{font-size:13px;font-weight:800}
-  .risk-items{display:flex;flex-direction:column;gap:6px}
-  .risk-item{font-size:11px;color:var(--mid);line-height:1.5;padding-left:12px;position:relative}
-  .risk-item::before{content:'';position:absolute;left:0;top:6px;width:5px;height:5px;border-radius:50%;background:var(--red)}
+  .risk-card{border:1px solid var(--border2);border-radius:var(--r);padding:22px;background:var(--card)}
+  .risk-head{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+  .risk-title{font-size:15px;font-weight:800}
+  .risk-items{display:flex;flex-direction:column;gap:8px}
+  .risk-item{font-size:13px;color:var(--mid);line-height:1.6;padding-left:14px;position:relative}
+  .risk-item::before{content:'';position:absolute;left:0;top:7px;width:6px;height:6px;border-radius:50%;background:var(--red)}
   .risk-item.ok::before{background:var(--green)}
 
-  .nav{display:flex;gap:8px;margin-top:56px;padding-top:24px;border-top:1px solid var(--border2);justify-content:space-between;align-items:center}
-  .nav-link{padding:10px 20px;border-radius:8px;font-size:13px;font-weight:700;text-decoration:none;transition:opacity 0.2s;border:1px solid var(--border2);color:var(--text);background:var(--card)}
+  .nav{display:flex;gap:8px;margin-top:56px;padding-top:24px;border-top:1px solid var(--border2);justify-content:space-between;align-items:center;flex-wrap:wrap}
+  .nav-link{padding:12px 22px;border-radius:8px;font-size:14px;font-weight:700;text-decoration:none;transition:opacity 0.2s;border:1px solid var(--border2);color:var(--text);background:var(--card)}
   .nav-link:hover{opacity:0.7}
   .nav-link.primary{background:var(--text);color:var(--bg);border-color:var(--text)}
-  .nav-meta{font-size:11px;color:var(--dim)}
+  .nav-meta{font-size:12px;color:var(--dim)}
 
-  .theme-btn{position:fixed;top:16px;right:16px;z-index:100;background:var(--card);border:1px solid var(--border2);border-radius:8px;padding:6px 10px;cursor:pointer;font-family:inherit;font-weight:600;font-size:12px;color:var(--text)}
+  .theme-btn{position:fixed;top:16px;right:16px;z-index:100;background:var(--card);border:1px solid var(--border2);border-radius:8px;padding:8px 12px;cursor:pointer;font-family:inherit;font-weight:600;font-size:13px;color:var(--text)}
   .theme-btn:hover{border-color:var(--dim)}
 
+  /* Mobile: single column blocks */
   @media(max-width:768px){
-    .tco-grid,.radar-grid{grid-template-columns:repeat(2,1fr)}
+    .tco-grid,.radar-grid{grid-template-columns:1fr}
     .risk-grid{grid-template-columns:1fr}
-    .sim-slider{width:140px}
-    body{padding:32px 16px}
-    .hdr-title{font-size:30px}
+    .sim-controls{flex-direction:column;align-items:flex-start}
+    .sim-slider{width:100%}
+    body{padding:32px 16px;font-size:15px}
+    .hdr-title{font-size:32px}
+    .sec-title{font-size:22px}
+    .nav{flex-direction:column;text-align:center;gap:12px}
   }
-  @media(max-width:480px){.tco-grid,.radar-grid{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -158,6 +161,70 @@
     <div class="sec-title">숨겨진 비용과 리스크</div>
     <div class="sec-desc">공식 가격표에 드러나지 않는 실질 비용 요소.</div>
     <div class="risk-grid" id="riskGrid"></div>
+  </div>
+
+  <!-- Data Sources -->
+  <div class="sec">
+    <div class="sec-label">Data Sources</div>
+    <div class="sec-title">TCO 산출 기초 데이터 및 출처</div>
+    <div class="sec-desc">본 분석에 사용된 비용 추정치의 근거입니다. 실측 데이터와 공식 문서를 기반으로 합니다.</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+      <div style="border:1px solid var(--border2);border-radius:var(--r);padding:22px;background:var(--card)">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px">
+          <div class="avg avg-sm" style="background:var(--blue)">Px</div>
+          <div style="font-size:15px;font-weight:800">Perplexity Computer</div>
+        </div>
+        <div style="font-size:13px;color:var(--mid);line-height:1.8">
+          <div style="padding:6px 0;border-bottom:1px solid var(--border)"><strong>기본 가격:</strong> $200/월 (Max 구독) — 공식 가격표</div>
+          <div style="padding:6px 0;border-bottom:1px solid var(--border)"><strong>월 크레딧:</strong> 10,000cr — Perplexity Help Center</div>
+          <div style="padding:6px 0;border-bottom:1px solid var(--border)"><strong>단순 작업:</strong> 31~37cr — Substack 실측 (karozieminski)</div>
+          <div style="padding:6px 0;border-bottom:1px solid var(--border)"><strong>보통 작업:</strong> 44~61cr — Substack 실측</div>
+          <div style="padding:6px 0;border-bottom:1px solid var(--border)"><strong>복잡 작업:</strong> 1K~21Kcr — Reddit 사용자 리포트 (28만줄 코드 스캔)</div>
+          <div style="padding:6px 0"><strong>헤비유저 월비용:</strong> $500~$1,500+ — FindSkill.ai, TrySliq 분석</div>
+        </div>
+      </div>
+      <div style="border:1px solid var(--border2);border-radius:var(--r);padding:22px;background:var(--card)">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px">
+          <div class="avg avg-sm" style="background:var(--amber)">Cl</div>
+          <div style="font-size:15px;font-weight:800">Claude Code / Cowork</div>
+        </div>
+        <div style="font-size:13px;color:var(--mid);line-height:1.8">
+          <div style="padding:6px 0;border-bottom:1px solid var(--border)"><strong>Pro 가격:</strong> $20/월 — 공식 가격표</div>
+          <div style="padding:6px 0;border-bottom:1px solid var(--border)"><strong>Pro 토큰:</strong> ~44K/5hr — Faros.ai, Claude Help Center</div>
+          <div style="padding:6px 0;border-bottom:1px solid var(--border)"><strong>Max 5x:</strong> ~88K/5hr — Faros.ai 분석</div>
+          <div style="padding:6px 0;border-bottom:1px solid var(--border)"><strong>Max 20x:</strong> ~220K/5hr — SSDNodes 분석</div>
+          <div style="padding:6px 0;border-bottom:1px solid var(--border)"><strong>세션 비용:</strong> 중앙값 $0.41 / 최대 $6.30 — dev.to 38세션 분석</div>
+          <div style="padding:6px 0"><strong>일 평균:</strong> ~$6 (90% 사용자 &lt;$12) — Anthropic 공식 데이터</div>
+        </div>
+      </div>
+      <div style="border:1px solid var(--border2);border-radius:var(--r);padding:22px;background:var(--card)">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px">
+          <div class="avg avg-sm" style="background:var(--green)">OA</div>
+          <div style="font-size:15px;font-weight:800">OpenAI Codex</div>
+        </div>
+        <div style="font-size:13px;color:var(--mid);line-height:1.8">
+          <div style="padding:6px 0;border-bottom:1px solid var(--border)"><strong>Plus 가격:</strong> $20/월, Pro $200/월 — 공식 가격표</div>
+          <div style="padding:6px 0;border-bottom:1px solid var(--border)"><strong>메시지 제한:</strong> 160msg/3hr (Plus) — OpenAI Help Center</div>
+          <div style="padding:6px 0;border-bottom:1px solid var(--border)"><strong>작업당 메시지:</strong> 5~50msg — CustomGPT 분석</div>
+          <div style="padding:6px 0"><strong>일 작업 한계:</strong> ~25건 — OpenAI Help Center (compute-based)</div>
+        </div>
+      </div>
+      <div style="border:1px solid var(--border2);border-radius:var(--r);padding:22px;background:var(--card)">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px">
+          <div class="avg avg-sm" style="background:var(--red)">OC</div>
+          <div style="font-size:15px;font-weight:800">OpenClaw</div>
+        </div>
+        <div style="font-size:13px;color:var(--mid);line-height:1.8">
+          <div style="padding:6px 0;border-bottom:1px solid var(--border)"><strong>소프트웨어:</strong> 무료 (오픈소스) — 공식</div>
+          <div style="padding:6px 0;border-bottom:1px solid var(--border)"><strong>작업당 토큰:</strong> 80K~150K (3~8 LLM 콜) — GLBgpt 분석</div>
+          <div style="padding:6px 0;border-bottom:1px solid var(--border)"><strong>소량 사용:</strong> $0.45~$6/월 — yu-wenhao 배포 가이드</div>
+          <div style="padding:6px 0"><strong>대량 사용:</strong> $100~$300+/월 — GLBgpt 가격 가이드</div>
+        </div>
+      </div>
+    </div>
+    <div style="margin-top:16px;padding:16px;border-radius:var(--r);background:var(--border);font-size:13px;color:var(--mid);line-height:1.7">
+      <strong style="color:var(--text)">산출 방식:</strong> TCO 시뮬레이터의 "단순/보통/복잡" 복잡도별 작업당 비용은 위 실측 데이터의 범위에서 대표값을 추출한 것입니다. 정액제(Claude, OpenAI)는 복잡도에 따라 추천 플랜이 달라지며, 종량제(Perplexity, OpenClaw)는 작업 수에 비례하여 계산됩니다. 실제 비용은 작업 유형, 모델 선택, 컨텍스트 크기에 따라 크게 달라질 수 있습니다.
+    </div>
   </div>
 
   <div class="nav">
@@ -267,11 +334,9 @@ function updateTCO() {
   });
 
   const maxAnnual = Math.max(...results.map(r => r.annual));
-  const minAnnual = Math.min(...results.map(r => r.annual));
 
   let html = '';
   results.forEach(r => {
-    const isWinner = r.annual === minAnnual;
     const pct = maxAnnual > 0 ? (r.annual / maxAnnual * 100) : 0;
     let warn = '';
     if (r.id === 'px' && tasks > 30 && complexity !== 'simple') {
@@ -284,8 +349,7 @@ function updateTCO() {
       warn = `<div class="tco-warn" style="background:var(--green-bg);color:var(--green)">일 25건 초과 — Pro($200) 고려</div>`;
     }
     html += `
-      <div class="tco-card${isWinner ? ' winner' : ''}" ${isWinner ? `style="outline:2px solid ${r.color.replace('var(','').replace(')','')}"` : ''}>
-        ${isWinner ? `<style>.tco-card.winner::after{background:${r.bg};color:${r.color}}</style>` : ''}
+      <div class="tco-card">
         <div class="tco-head"><div class="avg" style="background:${r.color}">${r.id.toUpperCase().slice(0,2)}</div><div class="tco-name">${r.name}</div></div>
         <div class="tco-monthly">${r.breakdown}</div>
         <div class="tco-annual" style="color:${r.color}">$${r.annual.toLocaleString()}<span>/년</span></div>
