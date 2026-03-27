@@ -1,6 +1,92 @@
 ---
 import Portal from '../layouts/Portal.astro';
 ---
-<Portal title="Atom Research" description="기술 리서치 포털">
-  <p>Placeholder</p>
+<Portal title="Atom Research" description="기술 리서치 포털 — AI Agent, 개발 도구, 기술 트렌드 분석">
+  <div class="hdr">
+    <div class="hdr-label">Research Portal</div>
+    <div class="hdr-title">Atom Research</div>
+    <div class="hdr-sub">기술 리서치 & 분석 아카이브</div>
+  </div>
+
+  <div class="research-grid">
+    <a href="ai-agent/" class="research-card">
+      <div class="research-icon" style="background:#0066FF">AI</div>
+      <div class="research-body">
+        <div class="research-title">AI Agent 서비스 비교</div>
+        <div class="research-desc">Perplexity Computer, Claude Cowork/Code, OpenAI Codex, OpenClaw — 구독 요금, 과금 모델, 아키텍처, TCO 분석</div>
+        <div class="research-meta">
+          <span class="research-tag">구독 비교</span>
+          <span class="research-tag">TCO 분석</span>
+          <span class="research-tag">에이전트 아키텍처</span>
+          <span class="research-date">2026.03</span>
+        </div>
+      </div>
+    </a>
+    <a href="tts/" class="research-card">
+      <div class="research-icon" style="background:#7B3FE4">TS</div>
+      <div class="research-body">
+        <div class="research-title">TTS 서비스 비교</div>
+        <div class="research-desc">가상상담사를 위한 한국어 TTS — ElevenLabs, OpenAI, Google, Azure, 오픈소스 모델 비교. 레이턴시, 가격, TCO 분석</div>
+        <div class="research-meta">
+          <span class="research-tag">가상상담사</span>
+          <span class="research-tag">한국어 TTS</span>
+          <span class="research-tag">레이턴시 벤치마크</span>
+          <span class="research-date">2026.03</span>
+        </div>
+      </div>
+    </a>
+    <a href="llm-comparison/" class="research-card">
+      <div class="research-icon" style="background:#00875A">LM</div>
+      <div class="research-body">
+        <div class="research-title">LLM 모델 비교 분석</div>
+        <div class="research-desc">GPT-4o/4.1, Claude 4.6, Gemini 2.5, Llama 4, DeepSeek, Grok 등 주요 모델의 벤치마크, 과금, 용도별 적합성, 배포 옵션, 시장 동향 종합 비교</div>
+        <div class="research-meta">
+          <span class="research-tag">벤치마크</span>
+          <span class="research-tag">과금 비교</span>
+          <span class="research-tag">용도별 추천</span>
+          <span class="research-tag">배포 전략</span>
+          <span class="research-date">2026.03</span>
+        </div>
+      </div>
+    </a>
+  </div>
+
+  <div class="empty">다음 리서치가 여기에 추가됩니다.</div>
+
+  <div class="footer">Atom Research</div>
 </Portal>
+
+<style>
+  .hdr{margin-bottom:56px}
+  .hdr-label{font-size:12px;font-weight:700;color:var(--dim);text-transform:uppercase;letter-spacing:3px;margin-bottom:8px}
+  .hdr-title{font-size:48px;font-weight:800;letter-spacing:-2px;line-height:1.05}
+  .hdr-sub{font-size:16px;color:var(--dim);margin-top:12px;line-height:1.7;max-width:500px}
+
+  .research-grid{display:flex;flex-direction:column;gap:16px}
+  .research-card{
+    border:1px solid var(--border2);border-radius:var(--r);background:var(--card);
+    padding:28px;display:flex;gap:24px;align-items:flex-start;
+    text-decoration:none;color:var(--text);transition:all 0.15s;
+  }
+  .research-card:hover{border-color:var(--dim)}
+  .research-icon{
+    width:56px;height:56px;border-radius:14px;display:flex;align-items:center;justify-content:center;
+    font-size:24px;font-weight:800;color:#fff;flex-shrink:0;letter-spacing:-1px;
+  }
+  .research-body{flex:1;min-width:0}
+  .research-title{font-size:20px;font-weight:800;color:var(--text);margin-bottom:4px;letter-spacing:-0.3px}
+  .research-desc{font-size:14px;color:var(--mid);line-height:1.7;margin-bottom:10px}
+  .research-meta{display:flex;gap:8px;flex-wrap:wrap}
+  .research-tag{font-size:11px;font-weight:600;padding:3px 10px;border-radius:6px;background:var(--border);color:var(--dim)}
+  .research-date{font-size:11px;color:var(--mute);margin-left:auto;align-self:center}
+
+  .empty{margin-top:40px;padding:32px;border:1px dashed var(--border2);border-radius:var(--r);text-align:center;color:var(--dim);font-size:14px}
+
+  .footer{margin-top:56px;padding-top:24px;border-top:1px solid var(--border2);font-size:12px;color:var(--dim);text-align:center}
+
+  @media(max-width:768px){
+    .hdr-title{font-size:36px}
+    .research-card{flex-direction:column;gap:14px;padding:22px}
+    .research-date{margin-left:0}
+  }
+</style>
