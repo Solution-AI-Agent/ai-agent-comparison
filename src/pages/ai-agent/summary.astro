@@ -1,0 +1,254 @@
+---
+import Research from '../../layouts/Research.astro';
+
+const navLinks = [
+  { href: './', label: '상세 비교표' },
+  { href: 'insights', label: 'TCO 분석 & 인사이트' },
+];
+---
+<Research
+  title="AI Agent<br>서비스 비교"
+  label="Executive Summary"
+  sub="4개 서비스의 가격, 과금 모델, 아키텍처 차이를 한 페이지에 정리했습니다."
+  meta="2026년 3월 27일 기준 · 세금 미포함"
+  description="C레벨 의사결정을 위한 AI Agent 서비스 비교 요약."
+  navLinks={navLinks}
+>
+  <!-- Hero Cards -->
+  <div class="sec">
+    <div class="sec-label">Overview</div>
+    <div class="sec-title">서비스 요약</div>
+    <div class="hero-grid">
+      <div class="hero">
+        <div class="avg" style="background:var(--blue)">Px</div>
+        <div class="hero-name">Perplexity</div>
+        <div class="hero-billing">크레딧 소진형</div>
+        <div class="hero-price" style="color:var(--blue)">$200<span>/월~</span></div>
+        <div class="hero-note">10,000 크레딧/월</div>
+        <div class="hero-note">헤비유저 $500+/월</div>
+        <div class="hero-sep"></div>
+        <div class="hero-strength">19개 모델 오케스트레이션<br>클라우드 격리 실행</div>
+      </div>
+      <div class="hero">
+        <div class="avg" style="background:var(--amber)">Cl</div>
+        <div class="hero-name">Claude</div>
+        <div class="hero-billing">시간 윈도우 정액제</div>
+        <div class="hero-price" style="color:var(--amber)">$20<span>/월~</span></div>
+        <div class="hero-note">~44K 토큰/5hr</div>
+        <div class="hero-note">리셋 후 지속 사용</div>
+        <div class="hero-sep"></div>
+        <div class="hero-strength">Code + Cowork + 데스크톱<br>예측 가능한 월 비용</div>
+      </div>
+      <div class="hero">
+        <div class="avg" style="background:var(--green)">OA</div>
+        <div class="hero-name">OpenAI</div>
+        <div class="hero-billing">메시지 카운트제</div>
+        <div class="hero-price" style="color:var(--green)">$20<span>/월~</span></div>
+        <div class="hero-note">160msg/3hr</div>
+        <div class="hero-note">~25 Codex 작업/일</div>
+        <div class="hero-sep"></div>
+        <div class="hero-strength">Codex + Sora 통합<br>Web + CLI + App</div>
+      </div>
+      <div class="hero">
+        <div class="avg" style="background:var(--red)">OC</div>
+        <div class="hero-name">OpenClaw</div>
+        <div class="hero-billing">API 종량제</div>
+        <div class="hero-price" style="color:var(--red)">Free<span>+API</span></div>
+        <div class="hero-note">소량 $6/월</div>
+        <div class="hero-note">대량 $100~$300+</div>
+        <div class="hero-sep"></div>
+        <div class="hero-strength">오픈소스 · 모델 자유 선택<br>제로 텔레메트리</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Billing Model -->
+  <div class="sec">
+    <div class="sec-label">Billing Model</div>
+    <div class="sec-title">과금 모델이 핵심입니다</div>
+    <div class="bill-grid">
+      <div class="bill">
+        <div class="bill-head"><div class="avg avg-sm" style="background:var(--blue)">Px</div><div class="bill-model">크레딧 소진</div></div>
+        <div class="bill-desc">월 10K 크레딧<br>작업 복잡도에 따라 30~21,000 소모</div>
+        <div class="bill-tag" style="background:var(--blue-bg);color:var(--blue)">헤비유저는 월 중반 소진</div>
+      </div>
+      <div class="bill">
+        <div class="bill-head"><div class="avg avg-sm" style="background:var(--amber)">Cl</div><div class="bill-model">시간 윈도우</div></div>
+        <div class="bill-desc">5hr 롤링 리셋<br>Pro ~44K / Max 5x ~88K / 20x ~220K</div>
+        <div class="bill-tag" style="background:var(--amber-bg);color:var(--amber)">시간 지나면 자동 리셋</div>
+      </div>
+      <div class="bill">
+        <div class="bill-head"><div class="avg avg-sm" style="background:var(--green)">OA</div><div class="bill-model">메시지 카운트</div></div>
+        <div class="bill-desc">160msg/3hr<br>에이전트 1작업 = 5~50 메시지</div>
+        <div class="bill-tag" style="background:var(--green-bg);color:var(--green)">소진 시 mini 모델 전환</div>
+      </div>
+      <div class="bill">
+        <div class="bill-head"><div class="avg avg-sm" style="background:var(--red)">OC</div><div class="bill-model">API 종량</div></div>
+        <div class="bill-desc">작업당 80K~150K 토큰<br>모델 라우팅으로 60~80% 절감</div>
+        <div class="bill-tag" style="background:var(--red-bg);color:var(--red)">소량이면 가장 저렴</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Benchmark -->
+  <div class="sec">
+    <div class="sec-label">Real-World Benchmark</div>
+    <div class="sec-title">동일 작업 실측 비용</div>
+    <div class="bench">
+      <table>
+        <thead><tr>
+          <th>작업</th>
+          <th><span style="color:var(--blue)">Perplexity</span></th>
+          <th><span style="color:var(--amber)">Claude</span></th>
+          <th>비고</th>
+        </tr></thead>
+        <tbody>
+          <tr>
+            <td>부동산 리서치</td>
+            <td><span class="bench-val" style="color:var(--blue)">$18</span></td>
+            <td><span style="color:var(--dim)">품질 이슈</span></td>
+            <td style="font-size:11px;color:var(--dim)">Perplexity 법적 데이터 정확</td>
+          </tr>
+          <tr>
+            <td>뉴스앱 개발</td>
+            <td><span class="bench-val" style="color:var(--blue)">~$7.92</span></td>
+            <td><span class="bench-val" style="color:var(--amber)">~$0.41</span></td>
+            <td style="font-size:11px;color:var(--dim)">Claude 19배 저렴, UI 우수</td>
+          </tr>
+          <tr>
+            <td>28만 줄 코드 스캔</td>
+            <td><span class="bench-val bench-warn">21,000cr</span></td>
+            <td><span class="bench-val" style="color:var(--amber)">~$6.30</span></td>
+            <td style="font-size:11px;color:var(--dim)">코드 작업 비용 차이 극대화</td>
+          </tr>
+          <tr>
+            <td>단순 요약</td>
+            <td><span class="bench-val" style="color:var(--blue)">31~37cr</span></td>
+            <td><span class="bench-val" style="color:var(--amber)">~$0.41</span></td>
+            <td style="font-size:11px;color:var(--dim)">양쪽 모두 저렴</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="bench-cards">
+        <div class="bench-card">
+          <div class="bench-card-title">부동산 리서치</div>
+          <div class="bench-card-row"><span class="bench-card-label">Perplexity</span><span class="bench-val" style="color:var(--blue)">$18</span></div>
+          <div class="bench-card-row"><span class="bench-card-label">Claude</span><span style="color:var(--dim)">품질 이슈</span></div>
+          <div style="font-size:12px;color:var(--dim);margin-top:6px">Perplexity 법적 데이터 정확</div>
+        </div>
+        <div class="bench-card">
+          <div class="bench-card-title">뉴스앱 개발</div>
+          <div class="bench-card-row"><span class="bench-card-label">Perplexity</span><span class="bench-val" style="color:var(--blue)">~$7.92</span></div>
+          <div class="bench-card-row"><span class="bench-card-label">Claude</span><span class="bench-val" style="color:var(--amber)">~$0.41</span></div>
+          <div style="font-size:12px;color:var(--dim);margin-top:6px">Claude 19배 저렴, UI 우수</div>
+        </div>
+        <div class="bench-card">
+          <div class="bench-card-title">28만 줄 코드 스캔</div>
+          <div class="bench-card-row"><span class="bench-card-label">Perplexity</span><span class="bench-val bench-warn">21,000cr</span></div>
+          <div class="bench-card-row"><span class="bench-card-label">Claude</span><span class="bench-val" style="color:var(--amber)">~$6.30</span></div>
+          <div style="font-size:12px;color:var(--dim);margin-top:6px">코드 작업 비용 차이 극대화</div>
+        </div>
+        <div class="bench-card">
+          <div class="bench-card-title">단순 요약</div>
+          <div class="bench-card-row"><span class="bench-card-label">Perplexity</span><span class="bench-val" style="color:var(--blue)">31~37cr</span></div>
+          <div class="bench-card-row"><span class="bench-card-label">Claude</span><span class="bench-val" style="color:var(--amber)">~$0.41</span></div>
+          <div style="font-size:12px;color:var(--dim);margin-top:6px">양쪽 모두 저렴</div>
+        </div>
+      </div>
+      <div class="bench-note">
+        <strong>동일 작업 기준 Perplexity가 약 4배 비쌈.</strong> 단, 리서치 정확도는 Perplexity 우위.<br>
+        출처: Substack 실측 비교, 38 Claude Code 세션 분석(dev.to), FindSkill.ai
+      </div>
+    </div>
+
+    <div class="usage-grid">
+      <div class="usage-card">
+        <div class="usage-head">
+          <div class="avg avg-sm" style="background:var(--blue)">Px</div>
+          <div class="usage-title">Perplexity 크레딧 소모</div>
+        </div>
+        <div class="usage-rows">
+          <div class="usage-row"><span class="usage-row-label">단순 요약</span><span class="usage-row-val">31~37 cr</span></div>
+          <div class="usage-row"><span class="usage-row-label">리서치+브라우징</span><span class="usage-row-val">61 cr</span></div>
+          <div class="usage-row"><span class="usage-row-label">아이디에이션</span><span class="usage-row-val">44 cr</span></div>
+          <div class="usage-row"><span class="usage-row-label">코딩 세션</span><span class="usage-row-val" style="color:var(--red)">1K~21K cr</span></div>
+          <div class="usage-row"><span class="usage-row-label">웹사이트 빌드</span><span class="usage-row-val" style="color:var(--red)">~$200</span></div>
+        </div>
+        <div class="usage-bottom" style="background:var(--blue-bg);color:var(--blue)">월 10K cr = 단순 ~270건 또는 코딩 5~10건</div>
+      </div>
+      <div class="usage-card">
+        <div class="usage-head">
+          <div class="avg avg-sm" style="background:var(--amber)">Cl</div>
+          <div class="usage-title">Claude 38세션 실측</div>
+        </div>
+        <div class="usage-rows">
+          <div class="usage-row"><span class="usage-row-label">세션 중앙값</span><span class="usage-row-val">$0.41</span></div>
+          <div class="usage-row"><span class="usage-row-label">세션 최악값</span><span class="usage-row-val">$6.30</span></div>
+          <div class="usage-row"><span class="usage-row-label">일 평균</span><span class="usage-row-val">~$6/일</span></div>
+          <div class="usage-row"><span class="usage-row-label">90% 사용자</span><span class="usage-row-val">&lt;$12/일</span></div>
+          <div class="usage-row"><span class="usage-row-label">코드 출력 비율</span><span class="usage-row-val">0.6%</span></div>
+        </div>
+        <div class="usage-bottom" style="background:var(--amber-bg);color:var(--amber)">Pro $20/월 정액 · /clear로 토큰 절약</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Architecture -->
+  <div class="sec">
+    <div class="sec-label">Agent Architecture</div>
+    <div class="sec-title">에이전트 아키텍처 비교</div>
+    <div class="arch-grid">
+      <div class="arch">
+        <div class="arch-cat">협업 에이전트</div>
+        <div class="arch-title">Cowork</div>
+        <div class="arch-item"><div class="avg avg-xs" style="background:var(--amber)">Cl</div><strong>Claude Cowork</strong><span class="arch-env env-l">로컬</span></div>
+        <div style="font-size:11px;color:var(--dim);padding:4px 0 8px 28px">데스크톱 파일/앱 직접 접근 · 권한 기반</div>
+        <div class="arch-item"><div class="avg avg-xs" style="background:var(--blue)">Px</div><strong>Perplexity Computer</strong><span class="arch-env env-c">클라우드</span></div>
+        <div style="font-size:11px;color:var(--dim);padding:4px 0 0 28px">격리 VM · 19개 모델 · 수개월 실행</div>
+      </div>
+      <div class="arch">
+        <div class="arch-cat">데스크톱 자동화</div>
+        <div class="arch-title">Computer Use</div>
+        <div class="arch-item"><div class="avg avg-xs" style="background:var(--amber)">Cl</div><strong>Claude</strong><span class="arch-env env-h">하이브리드</span></div>
+        <div style="font-size:11px;color:var(--dim);padding:4px 0 8px 28px">비전 기반 · 스크린 해석 · macOS</div>
+        <div class="arch-item"><div class="avg avg-xs" style="background:var(--red)">OC</div><strong>OpenClaw</strong><span class="arch-env env-l">로컬</span></div>
+        <div style="font-size:11px;color:var(--dim);padding:4px 0 8px 28px">채팅앱 제어 · Win+Mac · OSS</div>
+        <div class="arch-item"><div class="avg avg-xs" style="background:var(--purple)">PP</div><strong>Perplexity Personal</strong><span class="arch-env env-l">로컬</span></div>
+        <div style="font-size:11px;color:var(--dim);padding:4px 0 0 28px">Mac mini · 오프라인 · 클라우드 연동</div>
+      </div>
+      <div class="arch">
+        <div class="arch-cat">코딩 에이전트</div>
+        <div class="arch-title">Coding</div>
+        <div class="arch-item"><div class="avg avg-xs" style="background:var(--amber)">Cl</div><strong>Claude Code</strong><span class="arch-env env-h">하이브리드</span></div>
+        <div style="font-size:11px;color:var(--dim);padding:4px 0 8px 28px">터미널 · SWE 72.7% · 단계별 협업</div>
+        <div class="arch-item"><div class="avg avg-xs" style="background:var(--green)">OA</div><strong>Codex</strong><span class="arch-env env-c">클라우드</span></div>
+        <div style="font-size:11px;color:var(--dim);padding:4px 0 8px 28px">컨테이너 · 69.1% · 빠른 생성</div>
+        <div class="arch-item"><div class="avg avg-xs" style="background:var(--red)">OC</div><strong>OpenClaw Code</strong><span class="arch-env env-l">로컬</span></div>
+        <div style="font-size:11px;color:var(--dim);padding:4px 0 0 28px">자체호스팅 · GitHub · DevOps</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Takeaway -->
+  <div class="take">
+    <div class="take-title">핵심 판단 기준</div>
+    <div class="take-grid">
+      <div class="take-item">
+        <div class="avg avg-sm" style="background:var(--amber)">Cl</div>
+        <div class="take-text"><strong>비용 예측성 &rarr; Claude</strong><br>정액제 + 시간 리셋. 월 $20 고정.</div>
+      </div>
+      <div class="take-item">
+        <div class="avg avg-sm" style="background:var(--blue)">Px</div>
+        <div class="take-text"><strong>완전 자율 &rarr; Perplexity</strong><br>19개 모델. 크레딧 소모 주의.</div>
+      </div>
+      <div class="take-item">
+        <div class="avg avg-sm" style="background:var(--green)">OA</div>
+        <div class="take-text"><strong>코딩+생성AI &rarr; OpenAI</strong><br>Codex + Sora. 생태계 최대.</div>
+      </div>
+      <div class="take-item">
+        <div class="avg avg-sm" style="background:var(--red)">OC</div>
+        <div class="take-text"><strong>데이터 통제 &rarr; OpenClaw</strong><br>오픈소스, 로컬, 제로 텔레메트리.</div>
+      </div>
+    </div>
+  </div>
+</Research>
