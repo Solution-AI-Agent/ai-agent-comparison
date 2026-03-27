@@ -1,0 +1,16 @@
+---
+---
+<button class="theme-btn" id="themeBtn">Light / Dark</button>
+<script>
+  const btn = document.getElementById('themeBtn');
+  btn?.addEventListener('click', () => {
+    const h = document.documentElement;
+    const c = h.getAttribute('data-theme');
+    const d = c === 'dark' || (!c && matchMedia('(prefers-color-scheme:dark)').matches);
+    const n = d ? 'light' : 'dark';
+    h.setAttribute('data-theme', n);
+    localStorage.setItem('theme', n);
+  });
+  const s = localStorage.getItem('theme');
+  if (s) document.documentElement.setAttribute('data-theme', s);
+</script>
