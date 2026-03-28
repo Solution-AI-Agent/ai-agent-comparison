@@ -113,37 +113,40 @@ const DIMS = [
     <div class="tco-grid" id="tcoGrid"></div>
 
     <!-- Enterprise Credit Reference -->
-    <div style="margin-top:24px;border:1px solid var(--border2);border-radius:var(--r);overflow:hidden;background:var(--card)">
-      <div style="padding:16px 18px;border-bottom:1px solid var(--border);font-size:14px;font-weight:800;color:var(--text);display:flex;align-items:center;gap:8px">
+    <div style="margin-top:24px">
+      <div style="font-size:14px;font-weight:800;color:var(--text);display:flex;align-items:center;gap:8px;margin-bottom:16px">
         <div class="avg avg-sm" style="background:var(--green)">OA</div>
-        OpenAI Enterprise 크레딧 소모 기준 (실제 데이터)
+        OpenAI Enterprise 크레딧 소모 기준
       </div>
-      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:1px;background:var(--border2)">
-        <div style="background:var(--card);padding:16px">
-          <div style="font-size:11px;font-weight:700;color:var(--dim);text-transform:uppercase;letter-spacing:1px;margin-bottom:10px">모델</div>
-          <div style="font-size:13px;color:var(--mid);line-height:2">
-            <div style="display:flex;justify-content:space-between"><span>GPT 5.3 Instant</span><strong style="color:var(--green)">무제한</strong></div>
-            <div style="display:flex;justify-content:space-between"><span>GPT-5.4 Thinking</span><strong>10 cr</strong></div>
-            <div style="display:flex;justify-content:space-between"><span>GPT-5.4 Pro</span><strong>50 cr</strong></div>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px">
+        <div style="background:var(--card);padding:22px;border:1px solid var(--border2);border-radius:var(--r);position:relative;overflow:hidden">
+          <div style="position:absolute;top:0;left:0;right:0;height:3px;background:var(--green)"></div>
+          <div style="font-size:11px;font-weight:700;color:var(--dim);text-transform:uppercase;letter-spacing:1px;margin-bottom:12px">모델</div>
+          <div style="font-size:13px;color:var(--mid);display:flex;flex-direction:column;gap:8px">
+            <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--border)"><span>GPT 5.3 Instant</span><strong style="color:var(--green)">무제한</strong></div>
+            <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--border)"><span>GPT-5.4 Thinking</span><strong>10 cr</strong></div>
+            <div style="display:flex;justify-content:space-between;padding:6px 0"><span>GPT-5.4 Pro</span><strong>50 cr</strong></div>
           </div>
         </div>
-        <div style="background:var(--card);padding:16px">
-          <div style="font-size:11px;font-weight:700;color:var(--dim);text-transform:uppercase;letter-spacing:1px;margin-bottom:10px">기능</div>
-          <div style="font-size:13px;color:var(--mid);line-height:2">
-            <div style="display:flex;justify-content:space-between"><span>에이전트</span><strong>30 cr/msg</strong></div>
-            <div style="display:flex;justify-content:space-between"><span>심층 리서치</span><strong>50 cr/건</strong></div>
-            <div style="display:flex;justify-content:space-between"><span>ImageGen</span><strong>6 cr/msg</strong></div>
-            <div style="display:flex;justify-content:space-between"><span>음성</span><strong>5 cr/분</strong></div>
+        <div style="background:var(--card);padding:22px;border:1px solid var(--border2);border-radius:var(--r);position:relative;overflow:hidden">
+          <div style="position:absolute;top:0;left:0;right:0;height:3px;background:var(--green)"></div>
+          <div style="font-size:11px;font-weight:700;color:var(--dim);text-transform:uppercase;letter-spacing:1px;margin-bottom:12px">기능</div>
+          <div style="font-size:13px;color:var(--mid);display:flex;flex-direction:column;gap:8px">
+            <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--border)"><span>에이전트</span><strong>30 cr/msg</strong></div>
+            <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--border)"><span>심층 리서치</span><strong>50 cr/건</strong></div>
+            <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--border)"><span>ImageGen</span><strong>6 cr/msg</strong></div>
+            <div style="display:flex;justify-content:space-between;padding:6px 0"><span>음성</span><strong>5 cr/분</strong></div>
           </div>
         </div>
-        <div style="background:var(--card);padding:16px">
-          <div style="font-size:11px;font-weight:700;color:var(--dim);text-transform:uppercase;letter-spacing:1px;margin-bottom:10px">Codex</div>
-          <div style="font-size:13px;color:var(--mid);line-height:2">
-            <div style="display:flex;justify-content:space-between"><span>Local (5.3)</span><strong>~5 cr</strong></div>
-            <div style="display:flex;justify-content:space-between"><span>Local (5.4)</span><strong>~7 cr</strong></div>
-            <div style="display:flex;justify-content:space-between"><span>Cloud (5.3)</span><strong>~25 cr</strong></div>
-            <div style="display:flex;justify-content:space-between"><span>Cloud (5.4)</span><strong>~34 cr</strong></div>
-            <div style="display:flex;justify-content:space-between"><span>Local (mini)</span><strong style="color:var(--green)">~1 cr</strong></div>
+        <div style="background:var(--card);padding:22px;border:1px solid var(--border2);border-radius:var(--r);position:relative;overflow:hidden">
+          <div style="position:absolute;top:0;left:0;right:0;height:3px;background:var(--green)"></div>
+          <div style="font-size:11px;font-weight:700;color:var(--dim);text-transform:uppercase;letter-spacing:1px;margin-bottom:12px">Codex</div>
+          <div style="font-size:13px;color:var(--mid);display:flex;flex-direction:column;gap:8px">
+            <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--border)"><span>Local (5.3)</span><strong>~5 cr</strong></div>
+            <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--border)"><span>Local (5.4)</span><strong>~7 cr</strong></div>
+            <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--border)"><span>Cloud (5.3)</span><strong>~25 cr</strong></div>
+            <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--border)"><span>Cloud (5.4)</span><strong>~34 cr</strong></div>
+            <div style="display:flex;justify-content:space-between;padding:6px 0"><span>Local (mini)</span><strong style="color:var(--green)">~1 cr</strong></div>
           </div>
         </div>
       </div>
@@ -291,8 +294,8 @@ const DIMS = [
   .tco-head{display:flex;align-items:center;gap:10px;margin-bottom:16px}
   .tco-name{font-size:16px;font-weight:800}
   .tco-monthly{font-size:13px;color:var(--dim);margin-bottom:6px;line-height:1.5}
-  .tco-annual{font-size:32px;font-weight:800;letter-spacing:-1.5px}
-  .tco-annual span{font-size:14px;font-weight:500;color:var(--dim)}
+  .tco-annual{font-size:38px;font-weight:800;letter-spacing:-2px}
+  .tco-annual span{font-size:15px;font-weight:500;color:var(--dim)}
   .tco-divider{height:1px;background:var(--border);margin:16px 0}
   .tco-bar-wrap{height:8px;background:var(--border);border-radius:4px;overflow:hidden}
   .tco-bar{height:100%;border-radius:4px;transition:width 0.5s ease}
